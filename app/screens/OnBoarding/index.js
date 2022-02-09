@@ -60,7 +60,7 @@ export default function index({navigation}) {
     );
   };
   const _onDone = () => {
-    navigation?.navigate("Home")
+    navigation?.navigate("Login")
   };
   return (
     <Container>
@@ -70,7 +70,7 @@ export default function index({navigation}) {
       renderItem={_renderItem}
       data={slides}
       onDone={_onDone}
-      showSkipButton
+      showSkipButton 
       renderSkipButton={() => <Label text={'Skip'} style={styles.btn} />}
       renderNextButton={() => <Label text={'Next'} style={styles.btn} />}
       renderDoneButton={() => <Label text={'Done'} style={styles.btn} />}

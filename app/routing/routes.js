@@ -4,6 +4,8 @@
  */
 import Home from '../screens/Home';
 import OnBoarding from '../screens/OnBoarding';
+import Login from '../screens/Login';
+
 import {appColors} from '../utils/appColors';
 
 export const RoutesList = [
@@ -15,6 +17,16 @@ export const RoutesList = [
       tabBarLabel: 'OnBoarding',
       tabBarButton:()=>null
       //.... rest are the params for Tab.Screen See : https://reactnavigation.org/docs/bottom-tab-navigator/#options
+    },
+  },
+  
+
+  {
+    name: 'Login',
+    component: Login,
+    options: {
+      tabBarBadge: 3,
+      tabBarLabel: 'Login', 
     },
   },
 

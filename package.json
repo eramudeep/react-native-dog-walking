@@ -1,5 +1,5 @@
 {
-  "name": "react_native_redux_starter",
+  "name": "WooDog",
   "version": "0.0.1",
   "private": true,
   "author": "NoddyCode <shammi.rathore66@gmail.com>",
@@ -24,6 +24,7 @@
     "react-native-dotenv": "^3.3.1",
     "react-native-dropdownalert": "^4.3.0",
     "react-native-gesture-handler": "^1.9.0",
+    "react-native-linear-gradient": "^2.5.6",
     "react-native-modal": "^13.0.0",
     "react-native-picker-select": "^8.0.4",
     "react-native-reanimated": "^1.13.2",

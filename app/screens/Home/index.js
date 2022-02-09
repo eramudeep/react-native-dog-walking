@@ -28,6 +28,7 @@ function Home({toggleDarkMode$}) {
     //console.log("error is =>",{isVisible});
     useEffect(() => {
         setIsError(error)
+       //throw Error("error!");
     }, [error])
     return (
         <View style={styles.container}>

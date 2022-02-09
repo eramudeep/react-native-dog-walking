@@ -3,6 +3,7 @@ import { StyleSheet, Text, TextInput, View } from 'react-native'
 import { appColors, shadow } from '../../utils/appColors'
 import { scale } from 'react-native-size-matters'
 import ReduxWrapper from '../../redux/ReduxWrapper'
+import Label from '../Label'
 
 function CustomInput({
     placeholder,
@@ -18,6 +19,9 @@ function CustomInput({
     return (
         <View style={[styles.container, darkMode ? styles.dark : styles.light]}>
             {IconLeft && <IconLeft/>}
+            <View style={{padding:scale(10) }} >
+                <Label text={placeholder}  style={{fontSize:scale(10), color:appColors.gray}} />
+          
             <TextInput
                 placeholder={placeholder}
                 value={value}
@@ -28,6 +32,7 @@ function CustomInput({
                 style={[styles.input,InputStyle, darkMode ? styles.darkLabel : styles.lightLabel ]}
             />
             {IconRight && <IconRight/>}
+              </View>
         </View>
     )
 }
@@ -35,12 +40,12 @@ export default  ReduxWrapper(CustomInput)
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
-        paddingHorizontal: scale(20),
+        paddingHorizontal: scale(10),
         margin:scale(5),
-        height: scale(45),
+        height: scale(50),
         alignItems: "center",
         backgroundColor: appColors.white,
-        borderRadius:scale(25),
+        borderRadius:scale(14),
         ...shadow
     },
     input: {
@@ -48,7 +53,7 @@ const styles = StyleSheet.create({
         fontSize: scale(14)
     },
     light:{ 
-        backgroundColor:appColors.white
+        backgroundColor:appColors.lightGray
     },
     dark:{ 
         backgroundColor:appColors.black
