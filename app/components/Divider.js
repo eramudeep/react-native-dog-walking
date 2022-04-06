@@ -33,12 +33,12 @@ import ReduxWrapper from '../redux/ReduxWrapper';
  * export default MyComponent;
  * ```
  */
-const Divider = ({ inset, style,   appState:{darkMode},...rest }) => {
+const Divider = ({ inset, style, isDark,  appState:{darkMode},...rest }) => {
   return (
     <View
       {...rest}
       style={[
-        darkMode ? styles.dark : styles.light,
+        darkMode ||isDark ? styles.dark : styles.light,
         inset && styles.inset,
         style,
       ]}

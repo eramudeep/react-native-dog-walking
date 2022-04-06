@@ -1,11 +1,11 @@
 import React, { useEffect,useState } from 'react'
-import { StyleSheet, Text, View,ScrollView,  } from 'react-native'
+import { StyleSheet, Text, View,ScrollView, FlatList,  } from 'react-native'
 import { useSelector,useDispatch } from 'react-redux';
 import { setError } from '../../redux/actions';
 import {  } from 'react-native-gesture-handler';
-import { features, starterIntro } from '../../utils/MockData';
+import { features, starterIntro,nearYou } from '../../utils/MockData';
 import { AlertHelper } from '../../utils/AlertHelper';
-import { appColors } from '../../utils/appColors';
+import { appColors,shadow } from '../../utils/appColors';
 import CustomInput from '../../components/CustomInput';
 import Label from '../../components/Label';
 import CustomButton from '../../components/CustomButton';
@@ -15,57 +15,71 @@ import Modal from 'Components/Modal';
 import { scale } from 'react-native-size-matters'; 
 import ReduxWrapper from '../../redux/ReduxWrapper';
 import Container from '../../components/Container';
+import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons'; 
+import SearchField from '../../components/SearchField';
+import NearYouCard from '../../components/NearYouCard';
 
-function Home({toggleDarkMode$}) {
-    const [isError, setIsError] = useState({})
-    const [text, setText] = useState("hello")
-    const [isVisible, setIsVisible] = useState(false)
-    let error = useSelector(state => state.error)// getting from reducer.
-    const dispatch = useDispatch()
-    const hasError=(error)=>{
-        dispatch(setError({error}))//here we can call a action to set an error in reducer.
-    }
-    //console.log("error is =>",{isVisible});
-    useEffect(() => {
-        setIsError(error)
-       //throw Error("error!");
-    }, [error])
-    return (
-        <View style={styles.container}>
-        <View style={styles.header}>
-            <Label style={styles.headerText}
-            text={"React native starter kit with redux By `Amusoftech`"}/>
+function Home({navigation,toggleDarkMode$}) {
+    
+  const _renderHeader = ()=>{
+    return <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center' }} >
+        <View >
+          <Label text="Home"  bold  style={{...shadow, fontSize:scale(34)}} />
+          <Label text="Explore dog walkers"  style={{fontSize:scale(17), color:appColors.gray}} />
         </View>
+        <CustomButton  onPress={()=> navigation?.navigate("Schedule") } iconLeft={<MaterialIcons name="add"  size={scale(12)} color={appColors.white} />} 
+        label={"Book a walk"}  
+        style={{width:scale(104), fontSize:scale(10), paddingHorizontal:scale(12)}} 
+        
+        labelStyle={{fontSize:scale(11)}} />
+    </View>
+  }
+  const HeadingLabel = ({label,subLabel})=>{
+    return <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}} >
+      <Label text={label? label: "Near you"} style={{fontSize: scale(34) }} bold />
+      <Label text={subLabel? subLabel :"View All"}  style={{textDecorationLine: 'underline',fontSize:scale( 15)   }} />
+    </View>
+
+  }
+    return ( 
+        
         <Container style={styles.scrollContainer} isScrollable>
-        <CustomButton  label={"Enable Dark Mode"} onPress={()=> toggleDarkMode$()}/>
-          <Label text={"What is React Native Starter?"} style={styles.TitleText}/>
-            {starterIntro.map((val,key)=>{
-                 return(
-                    <Label key={key} style={{fontSize:16,lineHeight:25,marginBottom:30 }} text={val}/>
-                 )
-             })}
-            <Label style={styles.TitleText} text={"What's inside"}/>
-             {features.map((val,key)=>{
-                 return(
-                    <Label key={key} text={`• ${val}`} style={{fontSize:18,lineHeight:36,fontWeight:"500" }}/>
-                 )
-             })}
-             <Divider isDark/>
-             <CustomInput placeholder={"enter text"} onChangeText={val=>setText(val)}/>
-             <Modal modalProps={ {isVisible:isVisible} } toggleModal={()=> setIsVisible(!isVisible)} >
-                <Label text={"Swap me down to close"} />
-             </Modal >
-             <View style={{flexDirection:'row', justifyContent:'space-evenly', alignItems:'center', paddingHorizontal:scale(20)}}>
-                <FontAwesome name="user" size={scale(30)} color={appColors.primary} />
-                <Label text={"Icon Demo"} />
-             </View>
-          <CustomButton  label={"Show Modal"} onPress={()=> setIsVisible(!isVisible)}/>
+           {_renderHeader()} 
+           <View style={{paddingVertical:scale(20)}}>
+            <SearchField />
+           </View>
+
+           <View style={{paddingVertical:scale(20)}}>
+           <HeadingLabel />
+            <FlatList
+            style={{paddingVertical:scale(20)}}
+            horizontal
+            data={nearYou}
+            ItemSeparatorComponent={()=> <View style={{padding:scale(20)}} /> }
+            showsHorizontalScrollIndicator={false}
+            renderItem={({item,index})=> <NearYouCard item={item} key={index} /> }
+            />
+           </View>
+
+
+           <View style={{paddingVertical:scale(20)}}>
+           <HeadingLabel label={"Suggested"}   />
+            <FlatList
+            style={{paddingVertical:scale(20)}}
+            horizontal
+            data={nearYou?.reverse()}
+            ItemSeparatorComponent={()=> <View style={{padding:scale(20)}} /> }
+            showsHorizontalScrollIndicator={false}
+            renderItem={({item,index})=> <NearYouCard item={item} key={index} /> }
+            />
+           </View>
 
            
-          
+           
+           
         </Container>
         
-      </View>
+       
     )
 }
 

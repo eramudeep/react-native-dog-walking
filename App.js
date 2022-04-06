@@ -19,7 +19,9 @@ import {navigationTypeTabs} from './app.json';
 import FontAwesome from 'react-native-vector-icons/dist/FontAwesome'; 
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons'; 
 import AntDesign from 'react-native-vector-icons/dist/AntDesign'; 
- 
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications 
 FontAwesome.loadFont()
 AntDesign.loadFont()
 MaterialIcons.loadFont()

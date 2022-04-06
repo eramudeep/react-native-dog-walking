@@ -34,8 +34,8 @@ export default function index({iconLeft, label, style, onPress, labelStyle}) {
 
 const styles = StyleSheet.create({
     gradinat:{
-        height: scale(50),
-        borderRadius: scale(30),
+        height: scale(45),
+        borderRadius: scale(10),
         justifyContent: 'center',
         alignItems: 'center',
         overflow: 'hidden',

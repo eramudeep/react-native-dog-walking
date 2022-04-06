@@ -4,17 +4,17 @@ import { scale } from 'react-native-size-matters'
 import ReduxWrapper from '../../redux/ReduxWrapper'
 import { appColors } from '../../utils/appColors'
 
-function Container({children,isScrollable, appState:{darkMode}}) { 
+function Container({children,innerViewStyle, isScrollable, appState:{darkMode}}) { 
     return (
         <SafeAreaView style={styles.container}>
             {
-                isScrollable? <ScrollView>
-                    <View style={[styles.innerView, darkMode ? styles.dark : styles.light ]}>
+                isScrollable? <ScrollView showsVerticalScrollIndicator={false}>
+                    <View style={[styles.innerView,innerViewStyle,  darkMode ? styles.dark : styles.light ]}>
                         {children}
                     </View>
                 </ScrollView>
                 :
-                <View style={[styles.innerView, darkMode ? styles.dark : styles.light ]}>{children}</View>
+                <View style={[styles.innerView,innerViewStyle,  darkMode ? styles.dark : styles.light ]}>{children}</View>
             }
         </SafeAreaView>
     )

@@ -7,8 +7,9 @@ export const appColors={
     lightBlack:'#2B2B2B',
     //black:"#000"
     black:"rgba(0,0,0,0.79)",
-
-    lightGray: '#F0F0F0'
+    yellow:'#FFCB55', 
+    lightGray: '#F0F0F0',
+    placeHolderColor:"#A1A1A1"
 }
 export const shadow = {
     shadowColor: "#000",

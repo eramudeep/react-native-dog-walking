@@ -19,7 +19,7 @@ export default function TabCerator({routes}) {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: appColors.primary,
+        activeTintColor: appColors.black,
         inactiveTintColor: appColors.secondaryFont,
         style: {
           ...shadow,

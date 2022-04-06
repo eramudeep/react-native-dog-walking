@@ -7,7 +7,7 @@ import Label from '../../components/Label';
 import {scale} from 'react-native-size-matters';
 import {appColors} from '../../utils/appColors';
 import MaterialIcons from 'react-native-vector-icons/dist/FontAwesome'; 
-export default function index() {
+export default function index({navigation}) {
   const fields = [
     {
       name: 'Full Name',
@@ -44,7 +44,7 @@ export default function index() {
       })}
 
             <View style={{paddingVertical: scale(7)}}>
-            <CustomButton label={'Sign Up'} />
+            <CustomButton onPress={()=> navigation.navigate("Home") } label={'Sign Up'} />
           </View>
           <View style={{paddingVertical: scale(7), justifyContent:'center', alignItems:'center'}}>
           <Label text="Or" style={{fontSize: scale(17)}} />
